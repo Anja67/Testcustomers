@@ -1,6 +1,8 @@
 package com.werkbliq.customerfile;
 
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,38 +15,40 @@ import javax.persistence.Table;
 @Table(name = "customers")
 public class customers {
 	
+	private static List<customers> customers = new ArrayList<>();
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private String id;
 
 		private String customer;
 		private String adress;
 		private String dogbreed;
-		private String finding;
-/*		private List<String> tags; */
+		private String finding;/*
+    	private List<String> customers;*/
 		
-		public void CustomerResponse(
-				Long id,
+		@SuppressWarnings("static-access")
+		public void CustomersResponse(
+				String id,
 				String customer,
 				String adress,
 				String dogbreed,
 				String finding,
-				List<String> tags) {
+				List<customers> customers) {
 			this.id = id;
 			this.customer = customer;
 			this.adress = adress;
 			this.dogbreed = dogbreed;
 		    this.finding = finding;
-	/*		this.tags = tags; */
+			this.customers = customers;
 		}
 
-		public Long getId() {
+		public String getId() {
 			return id;
 		}
-		public void setId(Long id) {
+		public void setId(String id) {
 			this.id = id;
 		}
-		
 		
 		public String getCustomer() {
 			return customer;
@@ -70,14 +74,27 @@ public class customers {
 		public void setFinding(String finding) {
 			this.finding = finding;
 		}
-/*		public List<String> getList() {
-			return tags;
+
+		public List<customers> filter(String id) {
+			return (getCustomers());
 		}
-		public void setList(List<String> tags) {
-			this.tags = tags;
-		} */
+		
+		public customers stream() {
+
+			return (customers) getCustomers();
+		}
+
+		public static List<customers> getCustomers() {
+			return customers;
+		}
+
+		public static void setCustomers(List<customers> customers) {
+			customers = customers;
+		}
+
+		}
+
 	
-	}
 
 
 
