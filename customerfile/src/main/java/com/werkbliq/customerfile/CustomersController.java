@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,9 +69,9 @@ public class CustomersController {
 
 	}
 	
-	@GetMapping("/list/{id}")
-	public ResponseEntity<Customer> getCustomerById(@PathVariable ("id") Long id) {
-
+	@GetMapping("/id")
+	public ResponseEntity<Customer> getCustomerById(Long id) {
+		
 		Optional<Customer> customerOpt = customerRepo.findById(id);
 
 		return customerOpt
